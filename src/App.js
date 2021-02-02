@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import styles from './App.module.css';
+import './App.modules.css';
 import Cards from './components/Cards/Cards';
 import Chart from './components/Chart/Chart';
 import CountryPicker from './components/CountryPicker/CountryPicker';
@@ -9,27 +9,32 @@ class App extends Component {
 
     state = {
         data: {},  
+        country: '',
     }
 
    async componentDidMount() {
-        const data = await fetchData();
-        console.log('did mount');
-        this.setState({data: data});
+        const fetchedData = await fetchData();
+        this.setState({data: fetchedData});
+    }
+
+    handleCountryChange = async (country) => {
+       const fetchedData = await fetchData(country);
+       this.setState({ data: fetchedData, country: country});
     }
 
   render(){
-    const {data} = this.state;
+    const {data, country} = this.state;
     console.log(data);
     return (
         
-        <div className={styles.container}>
+        <div className="container">
             <Cards data = {data}></Cards>
-            <Chart></Chart>
-            <CountryPicker></CountryPicker>
+            <h1 className ="country">helloooooooooooooooo</h1>
+            <CountryPicker handleCountryChange={this.handleCountryChange}></CountryPicker>
+            <Chart data={data} country={country}></Chart>
         </div>
       );
   }
- 
 }
 
 export default App;
