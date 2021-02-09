@@ -1,0 +1,27 @@
+body {
+ background-color:rgb(121, 166, 177)
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: auto;
+}
+
+
+.image{
+  width: 300px;
+  top: 0;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 770px) {
+  .container {
+    margin: 0 10%;
+  }
+  .image{
+    width: 70%
+  }
+}

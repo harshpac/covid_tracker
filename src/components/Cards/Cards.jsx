@@ -1,17 +1,23 @@
 import React from 'react';
 import {Card, CardContent, Typography, Grid} from '@material-ui/core';
-import Styles from './Card.css';
+import './Card.css';
 import CountUp from 'react-countup';
-import cx from 'classnames';
+import Spinner from '../Spinner/Spinner';
 
 const Cards = ({data: {recovered, deaths, confirmed, lastupdate}}) => {
    
-   if(!confirmed) return 'loading...';
+   if(!confirmed) {
+       return (
+           <div>
+               <Spinner></Spinner>
+               <p>Loading...</p>
+           </div>
+       )
+   }
     return (
        <div >
-
-        <Grid container spacing = {3} justify = "center">
-            <Grid item component  ={Card} xs={12} md={3} className={Styles.infected}>
+        <Grid container spacing = {3} justify = "center" className="containerr">
+            <Grid item component  ={Card} xs={12} md={3} className="card infected">
              <CardContent>
                  <Typography color="textSecondary" gutterBottom>Infected</Typography>
                  <Typography variant = "h5">{
